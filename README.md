@@ -21,8 +21,8 @@ raw images. See Methods section of the manuscript for citation and access detail
 
 ## Key finding
 
-Internal adaptation to a synthetic dark-skin dataset (Brown Skin, AUC = 0.816)
-does not generalize zero-shot to real dark-skin cohorts (AUC = 0.51–0.59).
+Internal adaptation to a synthetic dark-skin dataset (Brown Skin, AUC = 0.722)
+does not generalize zero-shot to real dark-skin cohorts (AUC = 0.55–0.63).
 See `resumen_zeroshot_*.json` for full results with bootstrap 95% CIs.
 
 ## Reproducing the results
