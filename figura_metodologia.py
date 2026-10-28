@@ -122,7 +122,7 @@ block(x, y - 2.4, W, [("Preprocessing", ["resize to 224 × 224, scale to [0, 1]"
 
 # ---------- columna 2 ----------
 x = X[1]
-yb = block(x, Y0, W, [("Backbones", ["MobileNetV2 (primary, 3.4 M)", "EfficientNetB0 (comparison, 5.3 M)",
+yb = block(x, Y0, W, [("Backbones", ["MobileNetV2 (3.4 M params)", "EfficientNetB0 (5.3 M params)",
                                      "ImageNet-pretrained, same head"])],
            fc=GREY_BG, ec=LINE)
 y = yb - 2.4
@@ -149,24 +149,23 @@ y_cv_top = Y0
 y = block(x, Y0, W, [("Stratified group CV", ["5 folds × 3 repeats, identical", "folds for every strategy,",
                                               "validation on Brown Skin"]),
                      ("Metrics", ["AUC (primary); sensitivity,", "specificity, precision, F1,",
-                                  "Youden index; domain gap"]),
-                     ("Paired comparisons", ["corrected repeated-CV", "t-test, Holm-adjusted"])], lw=1.2)
+                                  "Youden index; source–target gap"]),
+                     ("Paired comparisons", ["corrected repeated-CV", "t-test, Holm-adjusted;", "both backbones"])], lw=1.2)
 y_cv_mid = (y_cv_top + y) / 2
 fold_grid(x + W - 6.6, y + 4.6)
 ya = tops[1] - 2.8
 arrow(X[1] + W, ya, x, ya)
-block(x, y - 2.4, W, [("Image-level partition", ["original random split, kept as a",
-                                                 "sensitivity analysis (both",
-                                                 "backbones): shows how lesion",
-                                                 "leakage inflates the AUC"])], fc=GREY_BG, ec=LINE)
+block(x, y - 2.4, W, [("Image-level partition", ["original random split and earlier",
+                                                 "pipeline, both backbones; kept",
+                                                 "only as a sensitivity analysis"])], fc=GREY_BG, ec=LINE)
 
 # ---------- columna 4 ----------
 x = X[3]
-y = block(x, Y0, W, [("Final C40 model", ["MobileNetV2 trained once on a", "lesion-level development split",
-                                          "(85 %), without fold selection;", "decision threshold frozen on",
-                                          "Brown Skin validation"])], lw=1.2)
+y = block(x, Y0, W, [("Final models", ["A, B and C40, both backbones, on", "one lesion-level development",
+                                          "split (85 %), no fold selection;", "C40 with 3 seeds; threshold",
+                                          "frozen on Brown Skin validation"])], lw=1.2)
 arrow(X[2] + W, Y0 - 5.5, x, Y0 - 5.5)
-note(X[2] + W + G / 2, Y0 - 4.3, "C40", ha="center")
+pass
 arrow(x + W / 2, y, x + W / 2, y - 2.6, color=INK)
 note(x + W / 2 + 1.0, y - 1.3, "no retraining")
 cylinder(x + W - 3.0, y - 2.6 - 1.1, fc="#f7c9b2", ec=ORANGE)
@@ -177,7 +176,7 @@ block(x, y - 2.6, W, [("Real external cohorts", ["clinical photographs,", "never
                             "**PAD-UFES-20", "2,298 smartphone images"]),
                       ("", ["control: Brown Skin hold-out",
                             "AUC with bootstrap 95 % CI;",
-                            "frozen vs. re-optimized threshold"])],
+                            "frozen vs. re-optimized threshold;", "paired A vs. C40 comparison"])],
       fc=ORANGE_BG, ec=ORANGE, title_color=ORANGE)
 
 fig.savefig(out + ".pdf"); fig.savefig(out + ".png", dpi=300, facecolor="white")

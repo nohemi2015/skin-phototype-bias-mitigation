@@ -1,6 +1,13 @@
+"""Resumen de MobileNetV2 con split por lesion y comparaciones pareadas (prueba t corregida
+de Nadeau-Bengio para CV repetida, ratio n_val/n_train, Holm sobre las secundarias).
+Uso: python comparaciones_pareadas.py <resultados_leakage_safe.csv> <carpeta_salida>"""
 import pandas as pd, numpy as np
 from scipy import stats
-d=pd.read_csv('./resultados_leakage_safe.csv')
+import sys
+src, out = sys.argv[1], sys.argv[2]
+d=pd.read_csv(src)
+if 'arch' in d: d=d[d['arch'].fillna('mobilenetv2')=='mobilenetv2']
+d=d[~d.model.astype(str).str.startswith('FINAL')]
 d=d.drop_duplicates(['model','repeat','fold'],keep='last')
 # coherencia
 n=d.tn+d.fp+d.fn+d.tp
@@ -36,6 +43,6 @@ sec=sec.assign(p_holm=adj)
 r=r.merge(sec[['A','B','p_holm']],on=['A','B'],how='left')
 pd.set_option('display.width',200)
 print(r.round(4).to_string())
-r.to_csv('./comparaciones_pareadas.csv',index=False)
-m.to_csv('./resumen_sin_duplicados.csv')
+r.to_csv(f'{out}/comparaciones_pareadas.csv',index=False)
+m.to_csv(f'{out}/resumen_sin_duplicados.csv')
 print(d[d.model=='A'].n_train.describe())
