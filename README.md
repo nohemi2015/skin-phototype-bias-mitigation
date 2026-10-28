@@ -114,7 +114,7 @@ The thresholds passed to `analisis_ddi_fototipo.py` are the frozen thresholds st
 
 ## Model weights
 
-The trained weights of the ten final models (`FINAL_*.keras`) are available at: *[add GitHub Release or Zenodo link]*.
+The trained weights of the ten final models (`FINAL_*.keras`) are archived on Zenodo: https://doi.org/10.5281/zenodo.23743997 
 
 ## Citation
 
