@@ -1,0 +1,37 @@
+{
+  "dataset": "Fitzpatrick",
+  "n": 1079,
+  "n_benign": 570,
+  "n_malignant": 509,
+  "frozen_model_file": "C:\\1. HAM10000\\rerun_cv\\modelos\\leakage_safe\\FINAL_D_efficientnetb0.keras",
+  "auc": 0.6974149519181057,
+  "auc_ci95": [
+    0.6637725113154429,
+    0.7280386990515659
+  ],
+  "frozen_threshold": 0.5175539255142212,
+  "sensitivity_frozen": 0.44597249508840864,
+  "sensitivity_frozen_ci95": [
+    0.4050570149029053,
+    0.48706349206349203
+  ],
+  "specificity_frozen": 0.8175438596491228,
+  "specificity_frozen_ci95": [
+    0.7857051594061816,
+    0.8491317610635585
+  ],
+  "youden_threshold_on_external": 0.3199552595615387,
+  "sensitivity_youden": 0.6424361493123772,
+  "sensitivity_youden_ci95": [
+    0.4765484375,
+    0.7324178403755869
+  ],
+  "specificity_youden": 0.6614035087719298,
+  "specificity_youden_ci95": [
+    0.5686124449779911,
+    0.8131033888516283
+  ],
+  "control_bs_auc": 0.7928472061210294,
+  "domain_gap_vs_control": 0.09543225420292378,
+  "n_bootstrap": 1000
+}

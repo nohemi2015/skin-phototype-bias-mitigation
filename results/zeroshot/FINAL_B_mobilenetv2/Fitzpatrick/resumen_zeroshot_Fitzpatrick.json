@@ -1,0 +1,37 @@
+{
+  "dataset": "Fitzpatrick",
+  "n": 1079,
+  "n_benign": 570,
+  "n_malignant": 509,
+  "frozen_model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\FINAL_B_mobilenetv2.keras",
+  "auc": 0.5797194361148451,
+  "auc_ci95": [
+    0.545907467281556,
+    0.613944496219843
+  ],
+  "frozen_threshold": 0.5624284148216248,
+  "sensitivity_frozen": 0.22986247544204322,
+  "sensitivity_frozen_ci95": [
+    0.19482134967969958,
+    0.2651939978028563
+  ],
+  "specificity_frozen": 0.8122807017543859,
+  "specificity_frozen_ci95": [
+    0.7809110658397634,
+    0.8428590127150336
+  ],
+  "youden_threshold_on_external": 0.29632067680358887,
+  "sensitivity_youden": 0.5893909626719057,
+  "sensitivity_youden_ci95": [
+    0.41695648459092394,
+    0.7632219855169395
+  ],
+  "specificity_youden": 0.5561403508771929,
+  "specificity_youden_ci95": [
+    0.38925636863136864,
+    0.7290945333736032
+  ],
+  "control_bs_auc": 0.763760723394389,
+  "domain_gap_vs_control": 0.18404128727954394,
+  "n_bootstrap": 1000
+}

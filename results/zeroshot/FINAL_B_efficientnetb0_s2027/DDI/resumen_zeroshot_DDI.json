@@ -1,0 +1,37 @@
+{
+  "dataset": "DDI",
+  "n": 656,
+  "n_benign": 485,
+  "n_malignant": 171,
+  "frozen_model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\FINAL_B_efficientnetb0_s2027.keras",
+  "auc": 0.645770784349189,
+  "auc_ci95": [
+    0.6001263382871341,
+    0.6923958917889159
+  ],
+  "frozen_threshold": 0.49582338333129883,
+  "sensitivity_frozen": 0.6140350877192983,
+  "sensitivity_frozen_ci95": [
+    0.5449313358302122,
+    0.6800058139534885
+  ],
+  "specificity_frozen": 0.6329896907216495,
+  "specificity_frozen_ci95": [
+    0.5864181078733318,
+    0.6729304846938776
+  ],
+  "youden_threshold_on_external": 0.49640825390815735,
+  "sensitivity_youden": 0.6140350877192983,
+  "sensitivity_youden_ci95": [
+    0.51136044433095,
+    0.8177835460722677
+  ],
+  "specificity_youden": 0.6350515463917525,
+  "specificity_youden_ci95": [
+    0.4288628212791393,
+    0.7200922079417522
+  ],
+  "control_bs_auc": 0.7853221526650694,
+  "domain_gap_vs_control": 0.13955136831588044,
+  "n_bootstrap": 1000
+}

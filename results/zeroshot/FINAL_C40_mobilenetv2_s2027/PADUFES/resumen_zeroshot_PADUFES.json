@@ -1,0 +1,37 @@
+{
+  "dataset": "PADUFES",
+  "n": 2298,
+  "n_benign": 1209,
+  "n_malignant": 1089,
+  "frozen_model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\FINAL_C40_mobilenetv2_s2027.keras",
+  "auc": 0.6455171308543742,
+  "auc_ci95": [
+    0.6220302707337138,
+    0.6680324949453289
+  ],
+  "frozen_threshold": 0.5315834879875183,
+  "sensitivity_frozen": 0.10101010101010101,
+  "sensitivity_frozen_ci95": [
+    0.0840756219418147,
+    0.1197790701526809
+  ],
+  "specificity_frozen": 0.9751861042183623,
+  "specificity_frozen_ci95": [
+    0.9650403627058752,
+    0.9832663807705283
+  ],
+  "youden_threshold_on_external": 0.1002395898103714,
+  "sensitivity_youden": 0.5821854912764004,
+  "sensitivity_youden_ci95": [
+    0.4021879592787755,
+    0.6274162453609575
+  ],
+  "specificity_youden": 0.6476426799007444,
+  "specificity_youden_ci95": [
+    0.6111188584356829,
+    0.8208187205387205
+  ],
+  "control_bs_auc": 0.7671419738774248,
+  "domain_gap_vs_control": 0.12162484302305054,
+  "n_bootstrap": 1000
+}
