@@ -127,9 +127,33 @@ The thresholds passed to `analisis_ddi_fototipo.py` are the frozen thresholds st
 
 Strategy E ("balanced fusion") was meant to oversample Brown Skin to balance the two domains. Its replication factor is `len(HAM train) // len(BS train)` with a minimum of 1; because the Brown Skin training set is larger than the HAM10000 training set (about 9,400 vs. 7,700 images per fold), the factor is 1 in every fold and in every final model, so E trains on exactly the same images as D, in a different order. Its results reproduce D (internal AUC within 0.001; external and Derm7pt AUC within 0.01), and it is therefore not reported in the article. Its fold-level results and predictions, and the earlier analysis scripts that include it (`*_conE.py`), are kept for completeness. The article reports 24 final models (A, B, C40 and D, two backbones, three seeds).
 
+## Training configuration (all lesion-level runs and final models)
+
+| Item | Setting |
+|---|---|
+| Input | images resized to 224 × 224, scaled to [0, 1]; EfficientNet-B0 adds a `Rescaling(255)` layer so its built-in ImageNet normalization receives 0–255 values |
+| Backbones | `keras.applications` MobileNetV2 / EfficientNetB0, ImageNet weights, `include_top=False`, backbone always called with `training=False` (batch-normalization statistics never updated) |
+| Head | GlobalAveragePooling → Dense 256 (ReLU) → Dropout 0.4 → Dense 128 (ReLU) → Dropout 0.3 → Dense 1 (sigmoid) |
+| A, B, D | backbone frozen; Adam, learning rate 1e-4, up to 20 epochs |
+| C10–C80 | start from the A model of the same fold (or of the same development split); last *n* backbone layers trainable; Adam, learning rate 1e-5, up to 20 epochs |
+| Loss / batch | binary cross-entropy; batch size 32 |
+| Augmentation (training only) | random horizontal and vertical flips, brightness ±0.15, contrast [0.85, 1.15] |
+| Early stopping / checkpoint | `val_auc` on the Brown Skin validation images (patience 6, best weights restored; checkpoint at best `val_auc`); `ReduceLROnPlateau` on `val_loss` (factor 0.5, patience 3) |
+| Threshold | Youden-optimal threshold on the Brown Skin validation images (final models: frozen and applied unchanged to every external cohort) |
+| Partitions | `StratifiedGroupKFold` by HAM10000 `lesion_id`, 5 folds × 3 repeats, partition seed 2026 + r; final models: `GroupShuffleSplit` by `lesion_id`, 85 % development / 15 % hold-out (seed 2026), development split 85 / 15 into training / validation (seed 2027) |
+| Training seeds | cross-validation: 2026 + 100r + f; final models: 2026, 2027, 2028 (change only the training randomness, not the split) |
+
+Note: cross-validation models were evaluated in memory immediately after training, whereas final models were reloaded from their `.keras` checkpoint before evaluation; `pipeline/auditar_c40_efficientnet.py` tests whether this difference affects the fine-tuned EfficientNet-B0 C40 models (see the article, Section 4.3).
+
+## Correction of the EfficientNet-B0 C40 final models
+
+The first final EfficientNet-B0 C40 models were evaluated after restoring their best checkpoint from file, and that restoration did not reproduce the trained models (validation AUC 0.742–0.746 after restoring versus 0.784–0.785 recorded during training; `results/verification/auditoria_c40.csv`). A first retraining that also restored weights from file showed the same deficit (`results/verification/c40_eff_corregido_v1/`). The models were retrained a second time (`pipeline/reentrenar_c40_efficientnet.py`) and evaluated in memory with their best-epoch weights, which reproduce the training-time validation AUC (`results/verification/c40_eff_v2/comprobacion_carga.csv`). All EfficientNet-B0 C40 results in `results/` come from these models; the superseded predictions are in `results/superseded_c40_efficientnetb0/`. The three models are released as weight arrays (`FINAL_C40_efficientnetb0*_pesos.npz`, in the variable order of the fine-tuned model); load them only with `pipeline/cargar_c40_efficientnet.py`, which rebuilds the fine-tuned model and checks the archived hold-out predictions.
+
 ## Model weights
 
-The trained weights of the final models (`FINAL_*.keras`) are archived on Zenodo: https://doi.org/10.5281/zenodo.23743997
+The trained weights of the 24 final models (`FINAL_*.keras`) are archived on Zenodo: https://doi.org/10.5281/zenodo.23933156
+
+This repository (release v3.0, the version used for the article) is archived on Zenodo: https://doi.org/10.5281/zenodo.23899826
 
 ## Citation
 

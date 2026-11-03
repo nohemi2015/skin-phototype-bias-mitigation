@@ -1,0 +1,12 @@
+prueba,arch,modelo,auc_archivado_en_memoria,auc_recargado,max_dif_score
+1_cv_fold,mobilenetv2,C40_mobilenetv2_rep1_fold1.keras,0.7732108558457432,0.7732108558457432,1.1102230246251565e-16
+1_cv_fold,mobilenetv2,C40_mobilenetv2_rep1_fold2.keras,0.773849175666222,0.773849175666222,1.1102230246251565e-16
+1_cv_fold,mobilenetv2,C40_mobilenetv2_rep1_fold3.keras,0.7511645178017419,0.7511645178017419,1.1102230246251565e-16
+1_cv_fold,mobilenetv2,C40_mobilenetv2_rep1_fold4.keras,0.7857545854691942,0.7857545854691942,1.1102230246251565e-16
+1_cv_fold,mobilenetv2,C40_mobilenetv2_rep1_fold5.keras,0.7770021074815595,0.7770021074815595,1.1102230246251565e-16
+2_final_val_desarrollo,mobilenetv2,FINAL_C40_mobilenetv2.keras,0.7792004346847534,0.779153251796513,
+2_final_val_desarrollo,mobilenetv2,FINAL_C40_mobilenetv2_s2027.keras,0.7875356674194336,0.7875244506500714,
+2_final_val_desarrollo,mobilenetv2,FINAL_C40_mobilenetv2_s2028.keras,0.7936133146286011,0.7936101234887778,
+2_final_val_desarrollo,efficientnetb0,FINAL_C40_efficientnetb0.keras,0.7848047018051147,0.7419674716388454,
+2_final_val_desarrollo,efficientnetb0,FINAL_C40_efficientnetb0_s2027.keras,0.7848663330078125,0.7462426368156816,
+2_final_val_desarrollo,efficientnetb0,FINAL_C40_efficientnetb0_s2028.keras,0.7844575643539429,0.7426200221035476,

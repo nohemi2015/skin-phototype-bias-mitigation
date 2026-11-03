@@ -1,0 +1,11 @@
+{
+  "model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\c40_eff_v2\\FINAL_C40_efficientnetb0_s2027_pesos.npz",
+  "pesos_evaluados": "mejor_epoca_ram",
+  "arch": "efficientnetb0",
+  "config": "C40",
+  "train_seed": 2027,
+  "frozen_threshold_from_bs_val": 0.41343581676483154,
+  "control_bs_auc": 0.7858567122652447,
+  "n_test_bs": 1763,
+  "nota": "evaluado en memoria; pesos en .weights.h5"
+}

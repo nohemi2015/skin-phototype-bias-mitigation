@@ -3,35 +3,35 @@
   "n": 661,
   "n_benign": 591,
   "n_malignant": 70,
-  "frozen_model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\FINAL_C40_efficientnetb0_s2027.keras",
-  "auc": 0.5610103940053179,
+  "frozen_model_file": "C:\\1. HAM10000\\modelos\\leakage_safe\\c40_eff_v2\\FINAL_C40_efficientnetb0_s2027_pesos.npz",
+  "auc": 0.5935460478607687,
   "auc_ci95": [
-    0.4889863093297509,
-    0.6348896482357088
+    0.5219998738770599,
+    0.6658684245416302
   ],
-  "frozen_threshold": 0.6591273546218872,
-  "sensitivity_frozen": 0.5857142857142857,
+  "frozen_threshold": 0.41343581676483154,
+  "sensitivity_frozen": 0.8,
   "sensitivity_frozen_ci95": [
-    0.4761446886446886,
-    0.7058823529411765
+    0.7051282051282052,
+    0.8904109589041096
   ],
-  "specificity_frozen": 0.5532994923857868,
+  "specificity_frozen": 0.3164128595600677,
   "specificity_frozen_ci95": [
-    0.5144082962419125,
-    0.5949333124786713
+    0.28166142384105963,
+    0.3563025210084034
   ],
-  "youden_threshold_on_external": 0.7263413667678833,
-  "sensitivity_youden": 0.45714285714285713,
+  "youden_threshold_on_external": 0.48752015829086304,
+  "sensitivity_youden": 0.7571428571428571,
   "sensitivity_youden_ci95": [
-    0.38084886128364387,
-    0.7800205479452055
+    0.3087952488687783,
+    0.8714682539682539
   ],
-  "specificity_youden": 0.7174280879864636,
+  "specificity_youden": 0.43824027072758037,
   "specificity_youden_ci95": [
-    0.4073433294886582,
-    0.757740579743566
+    0.3838338856951453,
+    0.864819110115959
   ],
-  "control_bs_auc": 0.703703274338563,
-  "domain_gap_vs_control": 0.142692880333245,
+  "control_bs_auc": 0.7858567122652447,
+  "domain_gap_vs_control": 0.19231066440447597,
   "n_bootstrap": 1000
 }
