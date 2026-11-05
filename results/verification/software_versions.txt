@@ -1,0 +1,7 @@
+Python 3.11.9
+TensorFlow 2.21.0
+Keras 3.15.0
+scikit-learn 1.9.0
+NumPy 2.4.6
+pandas 3.0.3
+CPU AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD
