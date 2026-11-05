@@ -149,11 +149,19 @@ Note: cross-validation models were evaluated in memory immediately after trainin
 
 The first final EfficientNet-B0 C40 models were evaluated after restoring their best checkpoint from file, and that restoration did not reproduce the trained models (validation AUC 0.742–0.746 after restoring versus 0.784–0.785 recorded during training; `results/verification/auditoria_c40.csv`). A first retraining that also restored weights from file showed the same deficit (`results/verification/c40_eff_corregido_v1/`). The models were retrained a second time (`pipeline/reentrenar_c40_efficientnet.py`) and evaluated in memory with their best-epoch weights, which reproduce the training-time validation AUC (`results/verification/c40_eff_v2/comprobacion_carga.csv`). All EfficientNet-B0 C40 results in `results/` come from these models; the superseded predictions are in `results/superseded_c40_efficientnetb0/`. The three models are released as weight arrays (`FINAL_C40_efficientnetb0*_pesos.npz`, in the variable order of the fine-tuned model); load them only with `pipeline/cargar_c40_efficientnet.py`, which rebuilds the fine-tuned model and checks the archived hold-out predictions.
 
+## Revision analyses (v3.3)
+
+- `pipeline/revision/`: scripts of the pre-submission revision. `p1_c40_solo_ham.py` trains the fine-tuning control C40-HAM (last 40 backbone layers fine-tuned on HAM10000 only; 3 seeds × 2 backbones, trained and evaluated in memory) and `p1b_comparar_c40ham.py` compares it with A and C40 (paired bootstrap, B = 2000, Holm by family); `p2_sonda_dominio.py` is the real-versus-synthetic linear probe; `comun.py` reproduces the final split. `p3`–`p5` (MRA-MIDAS, complete HAM10000, official Derm7pt) were not run.
+- `results/c40_ham/`: C40-HAM predictions (Brown Skin control, four cohorts, Derm7pt), training histories, `auc_c40ham_B2000.csv` and `comparacion_c40ham_B2000.csv`.
+- `results/sonda_dominio/sonda_dominio.csv`: probe results.
+- `analysis/calibration.py` and `results/calibration/calibration_per_model.csv`: Brier score, ECE, calibration slope and intercept of the final models.
+- `results/verification/software_versions.txt`: Python 3.11.9, TensorFlow 2.21.0, Keras 3.15.0, scikit-learn 1.9.0, NumPy 2.4.6, pandas 3.0.3 (CPU only).
+
 ## Model weights
 
 The trained weights of the 24 final models (`FINAL_*.keras`) are archived on Zenodo: https://doi.org/10.5281/zenodo.23933156
 
-This repository (release v3.0, the version used for the article) is archived on Zenodo: https://doi.org/10.5281/zenodo.23899826
+Releases of this repository are archived on Zenodo; the article cites the release that contains the revision analyses (v3.3).
 
 ## Citation
 
